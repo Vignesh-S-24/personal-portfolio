@@ -27,10 +27,11 @@ export default function ProfileSection() {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf"; 
+    link.href = `${import.meta.env.VITE_BASE_URL}resume.pdf`;
     link.download = "Vignesh_Resume.pdf";
     link.click();
   };
+  
 
   return (
     <Box
