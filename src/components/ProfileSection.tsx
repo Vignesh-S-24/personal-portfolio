@@ -115,7 +115,7 @@ export default function ProfileSection() {
         <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
           <IconButton
             color="primary"
-            href="https://github.com/your-github-username"
+            href="https://github.com/Vignesh-S-24"
             target="_blank"
             aria-label="GitHub"
           >
@@ -123,7 +123,7 @@ export default function ProfileSection() {
           </IconButton>
           <IconButton
             color="primary"
-            href="https://wa.me/your-whatsapp-number"
+            href="https://wa.me/6369667957"
             target="_blank"
             aria-label="WhatsApp"
           >
@@ -139,7 +139,7 @@ export default function ProfileSection() {
           </IconButton>
           <IconButton
             color="primary"
-            href="mailto:your-email@example.com"
+            href="mailto:svicky1924@gmail.com"
             target="_blank"
             aria-label="Email"
           >
