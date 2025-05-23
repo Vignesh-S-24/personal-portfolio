@@ -42,7 +42,7 @@ export default function ProfileSection() {
         display: "flex",
         alignItems: "center",
         px: { xs: 2, md: 8 },
-        py: { xs: 6, md: 12 },
+        py: { xs: 8, md: 12 },
         flexWrap: "wrap",
       }}
     >

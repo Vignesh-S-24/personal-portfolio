@@ -75,15 +75,10 @@ const Projects: React.FC = () => {
       <Box
         sx={{
           display: "flex",
-          gap: 4,
-          overflowX: "auto",
-          pb: 2,
+          flexWrap: "wrap",
           justifyContent: "center",
-          "&::-webkit-scrollbar": { height: 8 },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#6a11cb",
-            borderRadius: 4,
-          },
+          gap: 4,
+          pb: 2,
         }}
       >
         {projects.map((project, index) => (
@@ -92,7 +87,8 @@ const Projects: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            viewport={{ once: true, amount: 0.3 }}  
+            viewport={{ once: true, amount: 0.3 }}
+            style={{ flex: "1 1 260px", maxWidth: "300px" }}
           >
             <Card
               sx={{
@@ -102,9 +98,7 @@ const Projects: React.FC = () => {
                 color: "white",
                 display: "flex",
                 flexDirection: "column",
-                width: 300,
-                minWidth: 300,
-                flexShrink: 0,
+                width: "100%",
                 height: 450,
               }}
             >
