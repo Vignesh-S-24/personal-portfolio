@@ -5,28 +5,31 @@ import {
   Box,
   Button,
   IconButton,
-  Drawer,
   List,
   ListItem,
-  ListItemButton,
-  ListItemText,
   useMediaQuery,
   useTheme,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import StarIcon from "@mui/icons-material/AutoAwesome";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useEffect, useState } from "react";
 
 const sections = [
-  { label: "About me", id: "about-me" },
-  { label: "Skills & Tools", id: "skills-tools" },
-  { label: "Experience", id: "experience" },
+  { label: "About", id: "about-me" },
+  { label: "Expertise", id: "skills-tools" },
   { label: "Projects", id: "projects" },
+  { label: "Education", id: "experience" },
   { label: "Contact", id: "contact" },
 ];
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState("about-me");
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -34,7 +37,7 @@ export default function Header() {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
-      setDrawerOpen(false); // Close drawer on mobile after clicking
+      setMenuOpen(false);
     }
   };
 
@@ -69,6 +72,17 @@ export default function Header() {
           background-position: -200% center;
         }
       }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     `;
     document.head.appendChild(style);
     return () => {
@@ -99,12 +113,9 @@ export default function Header() {
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
               animation: "shine 3s linear infinite",
-              px: 1.5,
-              py: 0.5,
               borderRadius: 1,
               display: "inline-block",
               fontSize: "1.8rem",
-              ml: 4,
             }}
           >
             Vignesh
@@ -115,27 +126,79 @@ export default function Header() {
               <IconButton
                 edge="end"
                 color="inherit"
-                onClick={() => setDrawerOpen(true)}
+                onClick={() => setMenuOpen(!menuOpen)}
+                sx={{
+                  background: "linear-gradient(to right, #9f68f0, #22d3ee)",
+                  borderRadius: "50%",
+                  transition: "background 0.3s",
+                  color: "#fff",
+                  zIndex: 1301,
+                }}
               >
-                <MenuIcon />
+                {menuOpen ? <CloseIcon /> : <MenuIcon />}
               </IconButton>
-              <Drawer
-                anchor="right"
-                open={drawerOpen}
-                onClose={() => setDrawerOpen(false)}
-              >
-                <Box sx={{ width: 250 }}>
+
+              {menuOpen && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "64px", // height of AppBar
+                    left: 0,
+                    width: "100%",
+                    background: "#0f172a",
+                    animation: "slideDown 0.4s ease",
+                    zIndex: 1300,
+                    borderTop: "1px solid #1e293b",
+                    boxShadow: "0px 10px 20px rgba(0,0,0,0.3)",
+                  }}
+                >
                   <List>
                     {sections.map(({ label, id }) => (
-                      <ListItem key={id} disablePadding>
-                        <ListItemButton onClick={() => handleScroll(id)}>
-                          <ListItemText primary={label} />
+                      <ListItem
+                        key={id}
+                        disablePadding
+                        onClick={() => handleScroll(id)}
+                        sx={{ mb: 1 }}
+                      >
+                        <ListItemButton
+                          sx={{
+                            borderRadius: 2,
+                            ml:2,
+                            mr:2,
+                            background:
+                              activeSection === id
+                                ? "linear-gradient(to right, #5b21b6, #2563eb)"
+                                : "transparent",
+                            color: activeSection === id ? "#fff" : "#cbd5e1",
+                            transition: "0.3s",
+                            "&:hover": {
+                              background:
+                                "linear-gradient(to right, #3730a3, #2563eb)",
+                              color: "#fff",
+                            },
+                          }}
+                        >
+                          <ListItemIcon sx={{ color: "#a5b4fc", minWidth: 32 }}>
+                            <StarIcon fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={label}
+                            primaryTypographyProps={{
+                              fontWeight: activeSection === id ? 700 : 500,
+                            }}
+                          />
+                          <ArrowForwardIosIcon
+                            sx={{
+                              fontSize: 16,
+                              color: activeSection === id ? "#fff" : "#64748b",
+                            }}
+                          />
                         </ListItemButton>
                       </ListItem>
                     ))}
                   </List>
                 </Box>
-              </Drawer>
+              )}
             </>
           ) : (
             <Box sx={{ display: "flex", gap: 4 }}>
@@ -156,7 +219,8 @@ export default function Header() {
                     borderRadius: 0,
                     transition: "all 0.3s ease",
                     "&:hover": {
-                      borderImage: "linear-gradient(to right, #8e2de2, #4a00e0)",
+                      borderImage:
+                        "linear-gradient(to right, #8e2de2, #4a00e0)",
                       borderImageSlice: 1,
                       backgroundColor: "transparent",
                     },
