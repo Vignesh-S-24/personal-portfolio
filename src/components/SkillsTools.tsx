@@ -1,22 +1,41 @@
 import { Box, Typography, Stack, Grid } from "@mui/material";
-import { FaHtml5, FaCss3Alt, FaJs, FaGithub, FaReact,FaCode } from "react-icons/fa";
-import { SiFigma, SiNextdotjs } from "react-icons/si"; 
 import { motion } from "framer-motion";
-
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaGithub,
+  FaCode,
+  FaGitlab,
+} from "react-icons/fa";
+import {
+  SiNextdotjs,
+  SiFigma,
+  SiRedux,
+  SiTypescript,
+  SiMui,
+} from "react-icons/si";
 
 const programmingLanguages = [
   { label: "HTML5", icon: <FaHtml5 size={40} color="#E44D26" /> },
   { label: "CSS3", icon: <FaCss3Alt size={40} color="#1572B6" /> },
-  { label: "Javascript", icon: <FaJs size={40} color="#F7DF1E" /> },
+  { label: "JavaScript", icon: <FaJs size={40} color="#F7DF1E" /> },
+  { label: "TypeScript", icon: <SiTypescript size={40} color="#3178C6" /> }, 
   { label: "React", icon: <FaReact size={40} color="#61DAFB" /> },
+  { label: "Redux", icon: <SiRedux size={40} color="#764ABC" /> },
   { label: "Next.js", icon: <SiNextdotjs size={40} color="#fff" /> },
 ];
 
 const toolsTechnologies = [
   { label: "GitHub", icon: <FaGithub size={40} color="#fff" /> },
+  { label: "GitLab", icon: <FaGitlab size={40} color="#FCA121" /> },
   { label: "Figma", icon: <SiFigma size={40} color="#A259FF" /> },
   { label: "VS Code", icon: <FaCode size={40} color="#007ACC" /> },
+  { label: "MUI", icon: <SiMui size={40} color="#007FFF" /> },
 ];
+
+
 
 export default function SkillsTools() {
   return (

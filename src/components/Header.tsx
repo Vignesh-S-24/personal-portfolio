@@ -17,13 +17,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import StarIcon from "@mui/icons-material/AutoAwesome";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import CodeIcon from "@mui/icons-material/Code";
 import { useEffect, useState } from "react";
 
 const sections = [
   { label: "About", id: "about-me" },
-  { label: "Expertise", id: "skills-tools" },
+  { label: "Skills & Tools", id: "skills-tools" },
+  { label: "Experience", id: "experience" },
   { label: "Projects", id: "projects" },
-  { label: "Education", id: "experience" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -102,24 +103,37 @@ export default function Header() {
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between", px: 4 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 700,
-              color: "transparent",
-              background: "linear-gradient(to right, #9f68f0, #22d3ee)",
-              backgroundSize: "200% auto",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              animation: "shine 3s linear infinite",
-              borderRadius: 1,
-              display: "inline-block",
-              fontSize: "1.8rem",
-            }}
-          >
-            Vignesh
-          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+            <IconButton
+              sx={{
+                backgroundColor: "#0e0e0e",
+                width: 40,
+                height: 40,
+                "&:hover": { backgroundColor: "#1a1a1a" },
+              }}
+            >
+              <CodeIcon sx={{ color: "white" }} />
+            </IconButton>
+
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 700,
+                color: "transparent",
+                background: "linear-gradient(to right, #9f68f0, #22d3ee)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                animation: "shine 3s linear infinite",
+                borderRadius: 1,
+                display: "inline-block",
+                fontSize: "1.8rem",
+              }}
+            >
+              Vignesh
+            </Typography>
+          </Box>
 
           {isMobile ? (
             <>
@@ -128,7 +142,7 @@ export default function Header() {
                 color="inherit"
                 onClick={() => setMenuOpen(!menuOpen)}
                 sx={{
-                  background: "linear-gradient(to right, #9f68f0, #22d3ee)",
+                  background: "linear-gradient(to right, #9f68f0, #1e293b)",
                   borderRadius: "50%",
                   transition: "background 0.3s",
                   color: "#fff",
@@ -142,7 +156,7 @@ export default function Header() {
                 <Box
                   sx={{
                     position: "absolute",
-                    top: "64px", // height of AppBar
+                    top: "64px",
                     left: 0,
                     width: "100%",
                     background: "#0f172a",
@@ -163,8 +177,8 @@ export default function Header() {
                         <ListItemButton
                           sx={{
                             borderRadius: 2,
-                            ml:2,
-                            mr:2,
+                            ml: 2,
+                            mr: 2,
                             background:
                               activeSection === id
                                 ? "linear-gradient(to right, #5b21b6, #2563eb)"
